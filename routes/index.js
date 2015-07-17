@@ -11,4 +11,10 @@ router.get('/', function(req, res) {
 router.get('/quizes/question', quizController.question);
 router.get('/quizes/answer', quizController.answer);
 
+/* Entrada para información sobre el autor 
+Tambien podriamos crear un controlador para este elemento*/
+router.get('/author', function(req, res) {
+  res.render('author');
+});
+
 module.exports = router;
