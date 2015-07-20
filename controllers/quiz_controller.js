@@ -8,28 +8,52 @@ exports.question  = function(req, res){
 	});
 };
 
-//GET /quizes/answer
+//GET /quizes:id
+exports.show = function(req, res){
+	models.Quiz.find(req.params.quizId).then(function(quiz){
+		res.render('quizes/show', { quiz: quiz });
+	});
+};
+
+//GET /quizes
+exports.index = function(req, res){
+	models.Quiz.findAll().then(function(quizes){
+		res.render('quizes/index.ejs', { quizes: quizes });
+	});
+};
+
+//GET /quizes:id/answer
 exports.answer = function(req, res){
-/* TODO: seguir utilizando expresiones regulares???
-	var respuesta = req.query.respuesta;
 
-    var patt = new RegExp(/roma/i);// "/i" Para que sea indeferente si esta en minusculas/mayusculas
-    var validacion = patt.test(respuesta);
+	models.Quiz.find(req.params.quizId).then(function(quiz){
 
-	if(validacion){
-		res.render('quizes/answer', {respuesta: "Correcto"});
-	}else{
-		res.render('quizes/answer', {respuesta: "Incorrecto"});
-	}
-*/
+		var validacion = validarRespuesta(req.query.respuesta, quiz.respuesta);
 
-	models.Quiz.findAll().then(function(quiz){
-
-		if(req.query.respuesta === quiz[0].respuesta){
-			res.render('quizes/answer', {respuesta: "Correcto"});
+		if(validacion){
+			res.render('quizes/answer', {
+				respuesta: "Correcto",
+				quiz: quiz
+			});
 		}else{
-			res.render('quizes/answer', {respuesta: "Incorrecto"});
+			res.render('quizes/answer', {
+				respuesta: "Incorrecto",
+				quiz: quiz
+			});
 		}
 	});
 
 };
+
+//Validador de respuestas
+function validarRespuesta(respuesta, correcta){
+
+	var patt = new RegExp(correcta, "i");// "/i" Para que sea indiferente si esta en minusculas/mayusculas
+
+	respuesta = respuesta.trim();
+	if(respuesta.length !== correcta.length)
+		return false;
+
+	var validacion = patt.test(respuesta);
+
+	return validacion;
+}
