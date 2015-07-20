@@ -41,7 +41,7 @@ sequelize.sync().then(function() {
 			Quiz.create({
 				pregunta: "Capital de Italia",
 				respuesta: 'Roma'
-			}).success(function(){
+			}).then(function(){
 				console.log("Base de datos inicializada")
 			});
 
