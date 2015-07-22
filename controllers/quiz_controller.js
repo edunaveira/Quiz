@@ -28,7 +28,7 @@ exports.index = function(req, res){
 			//Filtramos las respuestas a mostrar
 			models.Quiz.findAll(
 				{
-					where: ["`pregunta` like ?", search], 
+					where: ["pregunta like ?", search], 
 					order: '"pregunta" ASC'
 				}).then(function(quizes){
 					res.render('quizes/index.ejs', { quizes: quizes, errors: []});
