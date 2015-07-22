@@ -40,13 +40,15 @@ sequelize.sync().success(function() {
 		if(count === 0){ //se inicializa la tabla si esta vacia
 			Quiz.create({
 				pregunta: "Capital de Italia",
-				respuesta: 'Roma'
+				respuesta: 'Roma',
+				tema: 'otro'
 			}).success(function(){
 				console.log("Añadido primer registro a la BBDD")
 			});
 			Quiz.create({
 				pregunta: "Capital de España",
-				respuesta: 'Madrid'
+				respuesta: 'Madrid',
+				tema: 'humanidades'
 			}).success(function(){
 				console.log("Añadido segundo registro a la BBDD")
 			});

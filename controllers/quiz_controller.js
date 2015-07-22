@@ -21,6 +21,7 @@ exports.index = function(req, res){
 		//Comprobamos si se ha introducido elemento de busqueda
 		if (typeof(req.query.search) == "undefined") {
 			res.render('quizes/index.ejs', { quizes: quizes, errors: []});
+			console.log(quizes);
 		}else{
 			//Añadimos los caracteres comodín
 			var search = "%" + req.query.search.replace(" ", "%") + "%";
@@ -73,7 +74,7 @@ exports.create = function(req, res){
 		}else{
 			//Guardamos en la BBDD los campos
 			quiz.save( {
-				fields: ["pregunta", "respuesta"]
+				fields: ["pregunta", "respuesta", "tema"]
 			}).then(function(){
 				res.redirect('/quizes'); //Redireccionamos a la lista de preguntas
 			});
@@ -93,13 +94,14 @@ exports.edit = function(req, res){
 exports.update = function(req, res){
 	req.quiz.pregunta = req.body.quiz.pregunta;
 	req.quiz.respuesta = req.body.quiz.respuesta;
+	req.quiz.tema = req.body.quiz.tema;
 
 	req.quiz.validate().then(function(err){
 		if(err){
 			res.render('quizes/edit', {quiz: req.quiz, errors: err.errors});
 		}else{
 			req.quiz
-			.save({fields: ["pregunta", "respuesta"]})
+			.save({fields: ["pregunta", "respuesta", "tema"]})
 			.then(function(){ res.redirect('/quizes'); });
 		}
 	});
