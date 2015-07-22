@@ -12,8 +12,11 @@ module.exports = function(sequelize, DataTypes){
 				validate: { notEmpty: {msg: " - Falta Respuesta" }}
 			},
 			tema: {
-				type: DataTypes.STRING
-				
+				type: DataTypes.STRING,
+				defaultValue: "otro",
+				validate: {
+					isIn: [['otro', 'humanidades', 'ocio', 'ciencia', 'tecnologia']]
+				}
 			}
 		});
 }
