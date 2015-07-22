@@ -14,3 +14,6 @@ nav span             { margin: 0px 10px 0px 0px;}
 /*Para que no se coma la foto*/
 section		 		 {min-height: 300px;}
 div#autor img 		 {display: block; float: left;}
+
+nav span 			 { margin: 0px 10px 0px 0px; }
+#ErrorMsgs 			 { color: red; font-size: smaler; }
