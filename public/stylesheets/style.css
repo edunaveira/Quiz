@@ -1,19 +1,24 @@
+@import url(http://fonts.googleapis.com/css?family=Rye);
 
-*                    { margin: 0; padding: 0; }
+*                    { margin: 0; padding: 0; font-family: 'Rye', cursive;}
 body                 { font: 16px Georgia, serif; }
 
 #page-wrap           { margin: 2% auto; color: white; }
-#page-wrap > .main   { border: 1px solid #999; padding: 1%; 
+#page-wrap > .main   { border: 1px solid #00BCD4; padding: 1%; 
 	                   margin-bottom: 1px; color: black;}
 
 section > div        { padding: 20px; }
-header, nav, section { background: #eee; text-align: center;}
-footer               { background: #eee; text-align: center;}
+header, nav, section { background: #B2EBF2; text-align: center; }
+footer               { background: #B2EBF2; text-align: center;}
 nav span             { margin: 0px 10px 0px 0px;}
 
 /*Para que no se coma la foto*/
-section		 		 {min-height: 300px;}
+section		 		 {height: auto;}
 div#autor img 		 {display: block; float: left;}
 
 nav span 			 { margin: 0px 10px 0px 0px; }
 #ErrorMsgs 			 { color: red; font-size: smaler; }
+
+table 				 { width: 300px; margin: auto; margin-bottom: 50px; }
+
+section				 {  border-radius: 25px; border: 2px solid #8AC007; padding: 20px; width: 200px; height: 150px; display: inline;}

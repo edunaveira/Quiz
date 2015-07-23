@@ -24,11 +24,11 @@ exports.index = function(req, res){
 			console.log(quizes);
 		}else{
 			//Añadimos los caracteres comodín
-			var search = "%" + req.query.search.replace(" ", "%") + "%";
+			var search = "%" + req.query.search.replace(" ", "%").toLowerCase() + "%";
 			//Filtramos las respuestas a mostrar
 			models.Quiz.findAll(
 				{
-					where: ["pregunta like ?", search], 
+					where: ["lower(pregunta) like ?", search], 
 					order: '"pregunta" ASC'
 				}).then(function(quizes){
 					res.render('quizes/index.ejs', { quizes: quizes, errors: []});
