@@ -2,7 +2,12 @@ var models = require('../models/models.js');
 
 // Autoload  - factoriza el código si ruta incluye :quizId
 exports.load = function( req, res, next, quizId){
-	models.Quiz.find(quizId).then(
+	models.Quiz.find(
+			{
+				where: {id: Number(quizId)},
+				include: [{model: models.Comment }]
+			}
+		).then(
 		function(quiz){
 			if(quiz){
 				req.quiz = quiz;
@@ -21,7 +26,7 @@ exports.index = function(req, res){
 		//Comprobamos si se ha introducido elemento de busqueda
 		if (typeof(req.query.search) == "undefined") {
 			res.render('quizes/index.ejs', { quizes: quizes, errors: []});
-			console.log(quizes);
+			//console.log(quizes);
 		}else{
 			//Añadimos los caracteres comodín
 			var search = "%" + req.query.search.replace(" ", "%").toLowerCase() + "%";

@@ -21,4 +21,6 @@ nav span 			 { margin: 0px 10px 0px 0px; }
 
 table 				 { width: 300px; margin: auto; margin-bottom: 50px; }
 
+table#preguntas	td	 { border:solid; border-color: #eee; padding: 1em;}
+
 section				 {  border-radius: 25px; border: 2px solid #8AC007; padding: 20px; width: 200px; height: 150px; display: inline;}
