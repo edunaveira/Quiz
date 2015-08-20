@@ -5,6 +5,7 @@ var quizController = 	require('../controllers/quiz_controller');
 var commentController = require('../controllers/comment_controller');
 var sessionController = require('../controllers/session_controller');
 var userController = require('../controllers/user_controller');
+var statisticsController = require('../controllers/statistics_controller');
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -21,6 +22,8 @@ router.get('/login', sessionController.new);
 router.post('/login', sessionController.create);
 router.get('/logout', sessionController.destroy);
 
+//statistics
+router.get('/quizes/statistics', statisticsController.show);
 //Definición de rutas de /quizes
 router.get('/quizes', 						quizController.index);
 router.get('/quizes/:quizId(\\d+)', 		quizController.show);
@@ -43,6 +46,8 @@ router.get('/user/:userId(\\d+)/edit',  sessionController.loginRequired, userCon
 router.put('/user/:userId(\\d+)',  sessionController.loginRequired, userController.ownershipRequired, userController.update);     // actualizar información de cuenta
 router.delete('/user/:userId(\\d+)',  sessionController.loginRequired, userController.ownershipRequired, userController.destroy);     // borrar cuenta
 router.get('/user/:userId(\\d+)/quizes',  quizController.index);     // ver las preguntas de un usuario
+
+
 
 // Entrada para información sobre el autor
 //TODO: Crear controlador propio para ello

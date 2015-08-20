@@ -28,7 +28,7 @@ exports.index = function(req, res){
 		//Comprobamos si se ha introducido elemento de busqueda
 		if (typeof(req.query.search) == "undefined") {
 			res.render('quizes/index.ejs', { quizes: quizes, errors: []});
-			//console.log(quizes);
+			console.log(quizes);
 		}else{
 			//Añadimos los caracteres comodín
 			var search = "%" + req.query.search.replace(" ", "%").toLowerCase() + "%";
