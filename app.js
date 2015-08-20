@@ -30,17 +30,8 @@ app.use(session());
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Helpers dinamicos:
+//Tarea Obligatoria 9
 app.use(function(req, res, next){
-
-    // guardar path en session.redir para despues del login
-    if (!req.path.match(/\/login|\/logout|\/user/)) {
-        req.session.redir = req.path;
-    }
-
-    // Hacer visible req.session en las vistas
-    res.locals.session = req.session;
-
     var tActual = new Date().getTime();
 
     if(req.session.hasOwnProperty("user")){
@@ -59,6 +50,21 @@ app.use(function(req, res, next){
         }
 
     }
+
+    next();
+
+});
+
+// Helpers dinamicos:
+app.use(function(req, res, next){
+
+    // guardar path en session.redir para despues del login
+    if (!req.path.match(/\/login|\/logout|\/user/)) {
+        req.session.redir = req.path;
+    }
+
+    // Hacer visible req.session en las vistas
+    res.locals.session = req.session;
 
     next();
 });
