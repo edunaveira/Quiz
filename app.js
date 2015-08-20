@@ -46,7 +46,6 @@ app.use(function(req, res, next){
     if(req.session.hasOwnProperty("user")){
         if(req.session.user.hasOwnProperty("tiempo")){
 
-            //console.log("--->>>>>>>TimeStamp: " + req.session.user.tiempo + " / USUARIOOOOOOOOOOOOOOOO: " + req.session.user.username);
             var tiempoInactividad = 2 * 60 * 1000; // 2 minutos en milisegundos
             if((req.session.user.tiempo + tiempoInactividad) > tActual) {
                 req.session.user.tiempo = tActual;
