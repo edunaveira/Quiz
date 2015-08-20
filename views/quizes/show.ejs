@@ -8,5 +8,14 @@
 
 <p><strong>Comentarios:</strong></p>
 <%for(index in quiz.Comments){%>
-	<p>- <%=quiz.Comments[index].texto%></p>
+	<%if(quiz.Comments[index].publicado || session.user){%>
+		
+	<% if(session.user && !quiz.Comments[index].publicado){%>
+			<p>- <%=quiz.Comments[index].texto%>
+			<a href="/quizes/<%= quiz.id %>/comments/<%=quiz.Comments[index].id%>/publish"><button>Publicar</button></a></p>
+	<%}else{%>
+		<p>- <%=quiz.Comments[index].texto%></p>
+		<%console.log('ID DEL USUARIO: '+quiz.Comments[index].UserId)%>
+		<%  %>
+	<%}}%>
 <%}%>

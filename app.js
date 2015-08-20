@@ -40,11 +40,31 @@ app.use(function(req, res, next){
 
     // Hacer visible req.session en las vistas
     res.locals.session = req.session;
+
+    var tActual = new Date().getTime();
+
+    if(req.session.hasOwnProperty("user")){
+        if(req.session.user.hasOwnProperty("tiempo")){
+
+            //console.log("--->>>>>>>TimeStamp: " + req.session.user.tiempo + " / USUARIOOOOOOOOOOOOOOOO: " + req.session.user.username);
+            var tiempoInactividad = 2 * 60 * 1000; // 2 minutos en milisegundos
+            if((req.session.user.tiempo + tiempoInactividad) > tActual) {
+                req.session.user.tiempo = tActual;
+            }else{
+                delete req.session.user;
+                var errors = [];
+                var quiz;
+                res.render('sesionTerminada', {quiz: quiz, errors: errors});
+            }
+
+        }
+
+    }
+
     next();
 });
 
 app.use('/', routes);
-//app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -17,6 +17,8 @@ exports.load = function( req, res, next, quizId){
 			}
 		}
 	).catch(function(error){ next(error); });
+
+	//models.User.find({where: {id: req.session.user.id}}).then(function(user){console.log(user);});
 };
 
 //GET /quizes
