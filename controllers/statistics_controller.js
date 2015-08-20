@@ -8,7 +8,7 @@ var estadisticas = new Object();
 		estadisticas.numPreguntas = c;
 		models.Comment.count().then(function(c){
 			estadisticas.numComentarios = c;
-			estadisticas.medComentarios = (estadisticas.numPreguntas / estadisticas.numComentarios).toFixed(2);
+			estadisticas.medComentarios = (estadisticas.numComentarios /estadisticas.numPreguntas).toFixed(2);
 
 			models.Comment.findAll().then(function(c){
 				estadisticas.siComentarios = 0;
