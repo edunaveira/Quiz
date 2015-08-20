@@ -63,6 +63,7 @@ exports.new = function(req, res) {
 exports.create = function(req, res) {
     var user = models.User.build( req.body.user );
 
+
     user
     .validate()
     .then(
