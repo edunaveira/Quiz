@@ -41,7 +41,6 @@ app.use(function(req, res, next){
     // Hacer visible req.session en las vistas
     res.locals.session = req.session;
 
-
     var tActual = new Date().getTime();
 
     if(req.session.hasOwnProperty("user")){
