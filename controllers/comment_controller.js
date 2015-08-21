@@ -23,11 +23,17 @@ exports.new = function(req, res){
 
 //POST
 exports.create = function(req, res){
+	var idUsuario = 1;//TODO: Poner el usuario 1 como invitado...
+
+	if(req.session.hasOwnProperty("user")){
+		idUsuario = req.session.user.id;
+	}
+
 	var comment = models.Comment.build(
 	{
 		texto: req.body.comment.texto,
 		QuizId: req.params.quizId,
-		UserId: 2
+		UserId: idUsuario
 	});
 
 	comment.validate().then(function(err){
