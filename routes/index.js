@@ -6,6 +6,7 @@ var commentController = require('../controllers/comment_controller');
 var sessionController = require('../controllers/session_controller');
 var userController = require('../controllers/user_controller');
 var statisticsController = require('../controllers/statistics_controller');
+//var visitController = require('../controllers/visit_controller');
 
 /* GET home page. */
 router.get('/', function(req, res) {

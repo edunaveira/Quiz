@@ -24,8 +24,25 @@ var estadisticas = new Object();
 
 				estadisticas.siComentarios = ids.length;
 				estadisticas.noComentarios = estadisticas.numPreguntas - estadisticas.siComentarios;
+				
+				//Finalmente recorremos la tabla de visitantes
+				models.Visit.findAll().then(function(c){
+					var visitas = 0;
+					var unicos = [];
 
-				res.render('quizes/statistics.ejs', { estadisticas: estadisticas, errors: []});
+					for(var i=0; i < c.length; i++){
+						visitas++;
+						if(!inArray(c[i].ip, unicos)){
+							unicos.push(c[i].ip);
+						}
+					}
+
+					estadisticas.visitantes = unicos.length;
+					estadisticas.visitas = visitas;
+
+
+					res.render('quizes/statistics.ejs', { estadisticas: estadisticas, errors: []});
+				});
 
 			});
 		});
@@ -39,4 +56,8 @@ function inArray(needle, haystack) {
         if(haystack[i] == needle) return true;
     }
     return false;
+}
+
+function getIP(req){
+	return req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 }

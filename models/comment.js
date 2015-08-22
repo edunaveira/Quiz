@@ -15,5 +15,3 @@ module.exports = function(sequelize, DataTypes){
 		}
 	);
 };
-
-//TODO: Añadir el autor del comentario

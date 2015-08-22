@@ -55,6 +55,16 @@ app.use(function(req, res, next){
 
 });
 
+var visitController = require('./controllers/visit_controller');
+
+app.use(function(req, res, next){
+
+    
+    visitController.logIP(req, res);
+    next();
+
+});
+
 // Helpers dinamicos:
 app.use(function(req, res, next){
 
